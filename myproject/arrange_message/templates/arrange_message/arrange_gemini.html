@@ -6,7 +6,8 @@
     <title>テキスト整理</title>
 </head>
 <body>
-    <form method="POST">
+    <form method="POST" action="{% url 'arrange_message:input_gemini' %}">
+        {% csrf_token %}
         <div>
             <label for="message">整えたい文章を入力してください:</label>
         </div>
