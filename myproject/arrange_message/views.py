@@ -12,9 +12,7 @@ from zoneinfo import ZoneInfo
 class HomeView(View):
     def get(self, request, *args, **kwargs):
         # 元のコードに閉じ括弧が抜けていたのを修正しました
-        datetime_now = datetime.now(ZoneInfo('Asia/Tokyo')).strftime('%Y年%m月%d日 %H時%M分%S秒')
-        
-        return render(request, 'arrange_message/home.html') 
+        return render(request ,'arrange_message/home.html') 
 
 
 class ArrangeMessageView(View):

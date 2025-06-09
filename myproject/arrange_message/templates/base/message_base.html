@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>テキスト整理アプリ</title>
+</head>
+<body>
+    <header>
+        <a href="{% url 'arrange_message:home' %}"><h1>テキスト整理アプリ</h1></a>
+        <p>現在時刻: {{ current_time }}</p> 
+    </header>
+
+    <main>
+        {% block body %}
+        {% endblock %}
+    </main>
+
+    <footer>
+        <p>&copy; 2025 My App</p>
+    </footer>
+</body>
+</html>

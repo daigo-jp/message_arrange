@@ -1,12 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ホーム画面</title>
-</head>
-<body>
-    <h1>ホーム画面</h1>
+{% extends 'base/message_base.html' %}
+{%block body %}
     <a href="{% url 'arrange_message:input_gemini' %}">文章整理</a>
-</body>
-</html>
+{% endblock %}

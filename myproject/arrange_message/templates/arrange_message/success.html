@@ -1,15 +1,10 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>メッセージ作成完了</title>
-</head>
-<body>
+{% extends 'base/message_base.html' %}
+{%block body %}
     <h1>作成完了</h1>
     <div class="message-box">
         <p><strong>元のメッセージ (message):</strong><br>{{ saved_data.message }}</p>
         <p><strong>変換後のメッセージ (arrange_message):</strong><br>{{ saved_data.arrange_message }}</p>
     </div>
-</body>
-</html>
+    <a href="{% url 'arrange_message:home' %}">ホームに戻る</a>
+
+{% endblock %}
