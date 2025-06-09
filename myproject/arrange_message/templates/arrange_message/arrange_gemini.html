@@ -1,11 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>テキスト整理</title>
-</head>
-<body>
+{% extends 'base/message_base.html' %}
+{%block body %}
     <form method="POST" action="{% url 'arrange_message:input_gemini' %}">
         {% csrf_token %}
         <div>
@@ -18,5 +12,4 @@
             <button type="submit">送信</button>
         </div>
     </form>
-</body>
-</html>
+{% endblock %}
