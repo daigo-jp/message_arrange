@@ -1,0 +1,16 @@
+{% extends 'base/message_base.html' %}
+{% block body %}
+    <h2>メッセージアレンジ履歴</h2>
+
+    <ul>
+        {% for item in history %}
+            <li>
+                ID: {{ item.id }} <br>
+                メッセージ: {{ item.message }} <br>
+                変換後のメッセージ: {{ item.arrange_message }}
+            </li>
+        {% empty %}
+            <li>履歴はありません</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

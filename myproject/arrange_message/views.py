@@ -78,8 +78,17 @@ class SuccessView(View):
             'saved_data': saved_data
         }
         return render(request, 'arrange_message/success.html', context)
+    
+class MessageListView(View):
+    def get(self, request, *args, **kwargs):
+        # データベースから全履歴
+        history_list = MessageData.objects.all().order_by('-id')
+        # コンテキストを渡してテンプレートをレンダリング
+        return render(request, 'arrange_message/message_list.html',{'history': history_list} )
+    
 
 # .as_view() を使って、クラスをDjangoが使えるビュー関数に変換
 home = HomeView.as_view()
 message_input = ArrangeMessageView.as_view()
 success = SuccessView.as_view()
+message_list = MessageListView.as_view()
