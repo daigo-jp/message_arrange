@@ -1,16 +1,100 @@
 {% extends 'base/message_base.html' %}
+
+{% block styles %}
+{# このページ（履歴リスト）だけで使うスタイルをここに記述 #}
+<style>
+    /* ページタイトルの下の余白 */
+    h2 {
+        text-align: center;
+        margin-bottom: 30px;
+        color: #333;
+    }
+
+    /* ul要素のデフォルトスタイルをリセット */
+    .history-list {
+        list-style-type: none; /* リストの黒丸を消す */
+        padding: 0;
+        margin: 0;
+    }
+
+    /* 各履歴アイテム（カード）のスタイル */
+    .history-item {
+        background-color: #f9f9f9; /* カードの背景色 */
+        border: 1px solid #e7e7e7;  /* カードの枠線 */
+        border-radius: 8px;         /* カードの角を丸く */
+        padding: 20px;              /* カード内部の余白 */
+        margin-bottom: 20px;        /* カード間の下の余白 */
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05); /* わずかな影 */
+        transition: box-shadow 0.3s ease, transform 0.3s ease;
+    }
+    
+    .history-item:hover {
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1); /* ホバー時にもう少し影を濃く */
+        transform: translateY(-3px); /* 少しだけ浮かび上がらせる */
+    }
+    
+    /* 履歴がない場合のメッセージスタイル */
+    .empty-message {
+        text-align: center;
+        padding: 40px;
+        color: #777;
+        font-size: 1.2em;
+    }
+
+    /* 各データ項目のコンテナ */
+    .history-data {
+        margin-bottom: 15px; /* 各データの下に余白 */
+    }
+    .history-data:last-child {
+        margin-bottom: 0; /* 最後の要素の下余白は不要 */
+    }
+
+    /* データ項目のラベル（「ID:」など） */
+    .history-label {
+        display: block;
+        font-weight: bold;
+        color: #555;
+        margin-bottom: 5px;
+        font-size: 0.9em;
+    }
+
+    /* データ項目の内容（メッセージなど） */
+    .history-content {
+        background-color: #ffffff;
+        padding: 10px;
+        border-radius: 5px;
+        border-left: 4px solid #3498db; /* 左側にアクセントとなるボーダー */
+        color: #333;
+        white-space: pre-wrap; /* 改行やスペースをそのまま表示 */
+        word-wrap: break-word; /* 長い単語を折り返す */
+    }
+</style>
+{% endblock %}
+
+
 {% block body %}
     <h2>メッセージアレンジ履歴</h2>
 
-    <ul>
+    <ul class="history-list">
         {% for item in history %}
-            <li>
-                ID: {{ item.id }} <br>
-                メッセージ: {{ item.message }} <br>
-                変換後のメッセージ: {{ item.arrange_message }}
+            <li class="history-item">
+                <div class="history-data">
+                    <strong class="history-label">ID:</strong>
+                    <span>{{ item.id }}</span>
+                </div>
+                <div class="history-data">
+                    <strong class="history-label">元のメッセージ:</strong>
+                    <div class="history-content">{{ item.message }}</div>
+                </div>
+                <div class="history-data">
+                    <strong class="history-label">変換後のメッセージ案:</strong>
+                    <div class="history-content">{{ item.arrange_message }}</div>
+                </div>
             </li>
         {% empty %}
-            <li>履歴はありません</li>
+            <li class="empty-message">
+                履歴はありません
+            </li>
         {% endfor %}
     </ul>
 {% endblock %}

@@ -1,10 +1,82 @@
 {% extends 'base/message_base.html' %}
-{%block body %}
-    <h1>作成完了</h1>
-    <div class="message-box">
-        <p><strong>元のメッセージ (message):</strong><br>{{ saved_data.message }}</p>
-        <p><strong>変換後のメッセージ (arrange_message):</strong><br>{{ saved_data.arrange_message }}</p>
-    </div>
-    <a href="{% url 'arrange_message:home' %}">ホームに戻る</a>
 
+{% block styles %}
+{# このページだけで使うスタイルをここに記述 #}
+<style>
+    /* ページ全体のテキストを中央揃えに */
+    main {
+        text-align: center;
+    }
+
+    /* h1（完了メッセージ）のスタイル */
+    h1 {
+        color: #27ae60; /* 成功を示す緑色 */
+        margin-bottom: 30px;
+    }
+
+    /* 結果表示ボックスのスタイル */
+    .message-box {
+        background-color: #f9f9f9;
+        border: 1px solid #e7e7e7;
+        border-radius: 8px;
+        padding: 25px;
+        margin: 0 auto 30px auto; /* 上下左右のマージン */
+        text-align: left; /* ボックス内のテキストは左揃えに */
+        max-width: 90%; /* ボックスが広がりすぎないように */
+    }
+
+    .message-box p {
+        margin: 0 0 20px 0; /* 各メッセージの下に余白 */
+        line-height: 1.6;
+    }
+    
+    .message-box p:last-child {
+        margin-bottom: 0; /* 最後のpタグの下余白は不要 */
+    }
+
+    .message-box strong {
+        display: block;
+        margin-bottom: 8px;
+        color: #555;
+    }
+
+    /* ホームに戻るボタンのスタイル */
+    .btn-secondary {
+        display: inline-block;
+        text-decoration: none;
+        font-size: 1.1em;
+        font-weight: bold;
+        color: #34495e; /* 少し落ち着いた文字色 */
+        background-color: #ecf0f1; /* 背景色 */
+        border: 1px solid #bdc3c7;
+        padding: 12px 35px;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+
+    .btn-secondary:hover {
+        background-color: #ffffff;
+        border-color: #95a5a6;
+        transform: translateY(-2px);
+    }
+</style>
+{% endblock %}
+
+
+{% block body %}
+    <h1><i class="fas fa-check-circle"></i> 作成完了</h1>
+
+    <div class="message-box">
+        <p>
+            <strong>元のメッセージ (message):</strong>
+            {{ saved_data.message }}
+        </p>
+        <p>
+            <strong>変換後のメッセージ案 (arrange_message):</strong>
+            {{ saved_data.arrange_message }}
+        </p>
+    </div>
+    
+    <a href="{% url 'arrange_message:home' %}" class="btn-secondary">ホームに戻る</a>
 {% endblock %}

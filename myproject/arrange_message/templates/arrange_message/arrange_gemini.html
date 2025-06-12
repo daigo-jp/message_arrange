@@ -1,15 +1,78 @@
 {% extends 'base/message_base.html' %}
-{%block body %}
+
+{% block styles %}
+{# このページ（フォーム）だけで使うスタイルをここに記述 #}
+<style>
+    /* フォーム要素全体の配置調整 */
+    .form-group {
+        margin-bottom: 20px; /* 各フォーム部品の下に余白を設定 */
+        text-align: left;    /* ラベルなどを左揃えに */
+    }
+
+    /* ラベルのスタイル */
+    label {
+        display: block;      /* ラベルをブロック要素にして、改行されるようにする */
+        margin-bottom: 8px;  /* ラベルと入力欄の間の余白 */
+        font-size: 1.1em;
+        font-weight: bold;
+        color: #333;
+    }
+
+    /* テキストエリアのスタイル */
+    textarea {
+        width: 100%;         /* 親要素(main)の幅いっぱいに広げる */
+        padding: 15px;       /* 内側の余白 */
+        border: 2px solid #ddd;
+        border-radius: 8px;
+        font-size: 1em;
+        line-height: 1.6;
+        box-sizing: border-box; /* paddingとborderを幅(width)に含めて計算する */
+        transition: border-color 0.3s ease; /* 枠線の色の変化を滑らかに */
+    }
+
+    /* テキストエリアがクリックされた(フォーカスされた)時のスタイル */
+    textarea:focus {
+        border-color: #3498db; /* フォーカス時に枠線の色を青くする */
+        outline: none;       /* ブラウザ標準のフォーカス枠線を消す */
+    }
+
+    /* 送信ボタンの配置用コンテナ */
+    .submit-container {
+        text-align: right; /* ボタンを右に寄せる */
+    }
+
+    /* 送信ボタンのスタイル */
+    .btn {
+        display: inline-block;
+        text-decoration: none;
+        font-size: 1.1em;
+        font-weight: bold;
+        color: #ffffff;
+        background-color: #3498db;
+        padding: 12px 35px;
+        margin: 10px 0; 
+        border: none; 
+        cursor: pointer; 
+        transition: background-color 0.3s ease;
+    }
+
+    .btn:hover {
+        background-color: #2980b9;
+    }
+</style>
+{% endblock %}
+
+
+{% block body %}
     <form method="POST" action="{% url 'arrange_message:input_gemini' %}">
         {% csrf_token %}
-        <div>
+        <div class="form-group">
             <label for="message">整えたい文章を入力してください:</label>
+            <textarea id="message" name="user_message" rows="12"></textarea>
         </div>
-        <div>
-            <textarea id="message" name="user_message" rows="10" cols="100"></textarea>
-        </div>
-        <div>
-            <button type="submit">送信</button>
+
+        <div class="submit-container">
+            <button type="submit" class="btn">送信</button>
         </div>
     </form>
 {% endblock %}

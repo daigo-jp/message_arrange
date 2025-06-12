@@ -1,6 +1,37 @@
 {% extends 'base/message_base.html' %}
-{%block body %}
-    <a href="{% url 'arrange_message:input_gemini' %}">文章整理</a>
-    <br>
-    <a href="{% url 'arrange_message:message_list' %}">履歴</a>
+
+{% block styles %}
+{# このページだけで使うボタンスタイルをここに記述 #}
+<style>
+    /* 親のmainスタイルを上書きして、ボタンを中央揃えに */
+    main {
+        text-align: center;
+    }
+
+    .btn {
+        display: inline-block;
+        text-decoration: none;
+        font-size: 1.1em;
+        font-weight: bold;
+        color: #ffffff;
+        background-color: #3498db;
+        padding: 15px 40px;
+        margin: 10px;
+        border-radius: 8px;
+        transition: background-color 0.3s ease;
+        min-width: 200px;
+    }
+
+    .btn:hover {
+        background-color: #2980b9;
+    }
+</style>
+{% endblock %}
+
+
+{% block body %}
+{# このページの本体コンテンツ #}
+<a href="{% url 'arrange_message:input_gemini' %}" class="btn">文章整理</a>
+<br>
+<a href="{% url 'arrange_message:message_list' %}" class="btn">履歴</a>
 {% endblock %}
