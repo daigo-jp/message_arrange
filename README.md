@@ -4,7 +4,7 @@
 送信したメッセージをビジネスシーンで使える丁寧な言葉に変換してくれる
 
 ## 主な機能
-- Home
+- Home画面
 <img src="screenshots/home" alt="Home画面" width="400">
 - メッセージ送信
 <img src="screenshots/msg" alt="メッセージ送信" width="400">
