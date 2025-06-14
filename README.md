@@ -31,6 +31,6 @@
 ## 起動方法（開発環境）
 ```bash
 git clone https://github.com/daigo-jp/message_arrange
-cd myproject
+cd message_arrange/myproject
 python manage.py migrate
 python manage.py runserver
