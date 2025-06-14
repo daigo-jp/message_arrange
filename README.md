@@ -5,11 +5,11 @@
 
 ## 主な機能
 - Home
-<img src="myproject/screenshots/home" alt="Home画面" width="400">
+<img src="screenshots/home" alt="Home画面" width="400">
 - メッセージ送信
-<img src="myproject/screenshots/msg" alt="メッセージ送信" width="400">
+<img src="screenshots/msg" alt="メッセージ送信" width="400">
 - メッセージ履歴
-<img src="myproject/screenshots/msg_history" alt="履歴" width="400">
+<img src="screenshots/msg_history" alt="履歴" width="400">
 ## 使用技術
 - Python / Django（バックエンド）
 - SQLite（データベース）
