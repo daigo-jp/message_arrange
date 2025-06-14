@@ -10,7 +10,9 @@
 <img src="screenshots/msg.png" alt="メッセージ送信" width="400">
 - メッセージ履歴
 <img src="screenshots/msg_history.png" alt="履歴" width="400">
+
 ## 使用技術
+
 - Python / Django（バックエンド）
 - SQLite（データベース）
 - HTML / CSS（フロントエンド）
