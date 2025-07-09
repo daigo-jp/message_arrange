@@ -31,6 +31,7 @@
 ## 起動方法（開発環境）
 このプロジェクトでは Gemini API（Google Generative AI） を使用しています。起動には API キーの設定が必要です。
 MYPROJECTに .env ファイルを作成し、以下のように記述してください：
+
 GOOGLE_API_KEY=あなたのAPIキー
 ```bash
 git clone https://github.com/daigo-jp/message_arrange
