@@ -1,0 +1,69 @@
+{% extends 'base/base.html' %}
+
+{% block styles %}
+<style>
+    .form-container {
+        max-width: 400px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+    }
+    .form-container h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #333;
+    }
+    .form-container form p {
+        margin-bottom: 15px;
+    }
+    .form-container label {
+        display: block;
+        margin-bottom: 5px;
+        font-weight: bold;
+    }
+    .form-container input[type="text"],
+    .form-container input[type="password"] {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box; /* paddingを含めてwidthを100%にする */
+    }
+    .form-btn {
+        width: 100%;
+        padding: 12px;
+        font-size: 1.1em;
+        font-weight: bold;
+        color: #fff;
+        background-color: #3498db;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    .form-btn:hover {
+        background-color: #2980b9;
+    }
+    .sub-link {
+        text-align: center;
+        margin-top: 20px;
+    }
+</style>
+{% endblock %}
+
+
+{% block body %}
+<div class="form-container">
+    <h2>ログイン</h2>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="form-btn">ログイン</button>
+    </form>
+    <div class="sub-link">
+        <p>アカウントをお持ちでないですか？ <a href="{% url 'accounts:signup' %}">登録はこちら</a></p>
+    </div>
+</div>
+{% endblock %}

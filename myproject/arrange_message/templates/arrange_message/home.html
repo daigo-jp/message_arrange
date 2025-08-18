@@ -25,6 +25,16 @@
     .btn:hover {
         background-color: #2980b9;
     }
+    .btn-logout {
+        background-color: #e74c3c; /* 少し目立つ赤色 */
+    }
+
+    .btn-logout:hover {
+        background-color: #c0392b; /* 少し暗い赤色 */
+    }
+    .logout-container {
+        margin-top: 80px; /* 上のボタンとの間にスペースを確保 */
+    }
 </style>
 {% endblock %}
 
@@ -34,4 +44,11 @@
 <a href="{% url 'arrange_message:input_gemini' %}" class="btn">文章整理</a>
 <br>
 <a href="{% url 'arrange_message:message_list' %}" class="btn">履歴</a>
+
+<div class="logout-container">
+    <form action="{% url 'accounts:logout' %}" method="post" style="display: inline;">
+        {% csrf_token %}
+        <button type="submit" class="btn btn-logout">ログアウト</button>
+    </form>
+</div>
 {% endblock %}
