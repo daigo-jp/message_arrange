@@ -8,14 +8,14 @@ import google.generativeai as genai
 import os
 from datetime import datetime
 from zoneinfo import ZoneInfo
+from django.contrib.auth.mixins import LoginRequiredMixin   # ← 変更ポイント
 
-class HomeView(View):
+class HomeView(LoginRequiredMixin, View):   # ← mixinを追加
     def get(self, request, *args, **kwargs):
-        # 元のコードに閉じ括弧が抜けていたのを修正しました
         return render(request ,'arrange_message/home.html') 
 
 
-class ArrangeMessageView(View):
+class ArrangeMessageView(LoginRequiredMixin, View):   # ← mixinを追加
     # GETリクエスト（フォームページの表示）を処理するメソッド
     def get(self, request, *args, **kwargs):
         history_list = MessageData.objects.all().order_by('-id')
@@ -70,7 +70,7 @@ class ArrangeMessageView(View):
             context['original_message'] = original_message
             return render(request, 'arrange_message/arrange_gemini.html', context)
 
-class SuccessView(View):
+class SuccessView(LoginRequiredMixin, View):   # ← mixinを追加
     # GETリクエスト（成功ページの表示）を処理するメソッド
     def get(self, request, pk, *args, **kwargs):
         saved_data = get_object_or_404(MessageData, pk=pk)
@@ -79,7 +79,7 @@ class SuccessView(View):
         }
         return render(request, 'arrange_message/success.html', context)
     
-class MessageListView(View):
+class MessageListView(LoginRequiredMixin, View):   # ← mixinを追加
     def get(self, request, *args, **kwargs):
         # データベースから全履歴
         history_list = MessageData.objects.all().order_by('-id')
