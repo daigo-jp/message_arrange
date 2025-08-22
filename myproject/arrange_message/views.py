@@ -8,7 +8,7 @@ import google.generativeai as genai
 import os
 from datetime import datetime
 from zoneinfo import ZoneInfo
-from django.contrib.auth.mixins import LoginRequiredMixin   # ← 変更ポイント
+from django.contrib.auth.mixins import LoginRequiredMixin   
 
 class HomeView(LoginRequiredMixin, View):   # ← mixinを追加
     def get(self, request, *args, **kwargs):
@@ -85,6 +85,15 @@ class MessageListView(LoginRequiredMixin, View):   # ← mixinを追加
         history_list = MessageData.objects.all().order_by('-id')
         # コンテキストを渡してテンプレートをレンダリング
         return render(request, 'arrange_message/message_list.html',{'history': history_list} )
+    
+class MessageDeleteView(LoginRequiredMixin, View):   # ← mixinを追加
+    def post(self, request, pk, *args, **kwargs):
+        # 指定されたIDのメッセージデータを取得
+        message_data = get_object_or_404(MessageData, pk=pk)
+        # データを削除
+        message_data.delete()
+        # メッセージ一覧ページにリダイレクト
+        return redirect('arrange_message:message_list')
     
 
 # .as_view() を使って、クラスをDjangoが使えるビュー関数に変換
