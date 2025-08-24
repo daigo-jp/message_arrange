@@ -68,6 +68,18 @@
         white-space: pre-wrap; /* 改行やスペースをそのまま表示 */
         word-wrap: break-word; /* 長い単語を折り返す */
     }
+    .delete-btn {
+    background-color: #e74c3c;
+    color: #fff;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    }
+    .delete-btn:hover {
+        background-color: #c0392b;
+    }
 </style>
 {% endblock %}
 
@@ -90,6 +102,12 @@
                     <strong class="history-label">変換後のメッセージ案:</strong>
                     <div class="history-content">{{ item.arrange_message }}</div>
                 </div>
+                <form method="post" action="{% url 'arrange_message:message_delete' item.id %}" 
+                      style="margin-top: 15px;" 
+                      onsubmit="return confirm('このメッセージを削除しますか？');">
+                    {% csrf_token %}
+                    <button type="submit" class="delete-btn">削除</button>
+                </form>
             </li>
         {% empty %}
             <li class="empty-message">
