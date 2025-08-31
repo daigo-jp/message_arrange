@@ -4,6 +4,8 @@
 送信したメッセージをビジネスシーンで使える丁寧な言葉に変換してくれる
 
 ## 主な機能
+- アカウントログイン画面
+<img src="screenshots/login.png" alt="Home画面" width="400">
 - Home画面
 <img src="screenshots/home.png" alt="Home画面" width="400">
 - メッセージ送信
